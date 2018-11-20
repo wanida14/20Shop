@@ -100,6 +100,12 @@
 
         require('../app/src/connect.php'); // เรียกใช้ไฟล์...
 
+        if (isset($_GET['text_register'])) {
+            echo '<div class="alert alert-success" role="alert">
+                        สมัครสมาชิกเรียบร้อยแล้วค่ะ
+                  </div>';
+        }
+
         if (isset($_GET['category_id'])) {
             $category_id = $_GET['category_id'];
             
@@ -142,13 +148,10 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">หน้าหลัก</a>
+                        <a class="nav-link" href="index.php">หน้าหลัก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ติดต่อเรา</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ช่องทางการชำระเงิน</a>
+                        <a class="nav-link" href="../app/views/payment.php">ช่องทางการชำระเงิน</a>
                     </li>
                 </ul>
                 <?php
@@ -200,44 +203,44 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form method="post" action="../app/src/process_register.php">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">ชื่อ - สกุล</label>
-            <input type="text" class="form-control" id="name" placeholder="name">
+            <input type="text" name="name" class="form-control" id="name" placeholder="ใส่ชื่อ - นามสกุล">
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputEmail4">Username</label>
-              <input id="" type="text" name="age" class="form-control" placeholder="Username">
+              <input id="username" type="text" name="username" class="form-control" placeholder="ใส่ Username">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">Password</label>
-              <input id="" type="text" name="tel" class="form-control" placeholder="Password">
+              <input id="password" type="text" name="password" class="form-control" placeholder="ใส่ Password">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="inputEmail4">วันเกิด</label>
-              <input id="age" type="date" name="age" class="form-control">
+              <input id="birthday" type="date" name="birthday" class="form-control">
             </div>
             <div class="form-group col-md-6">
               <label for="inputPassword4">เบอร์โทรศัพท์</label>
-              <input id="tel" type="text" name="tel" class="form-control" placeholder="Phone">
+              <input id="tel" type="text" name="tel" class="form-control" placeholder="ใส่เบอรืโทรศัพท์ของคุณ">
             </div>
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">E-mail</label>
-            <input type="text" class="form-control" name="email" id="" placeholder="E-mail">
+            <input type="text" class="form-control" name="email" id="email" placeholder="ใส่ชื่อ E-mail ของคุณ">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">ที่อยู่</label>
-            <input type="text" class="form-control" name="address" id="" placeholder="Address">
+            <input type="text" class="form-control" name="address" id="address" placeholder="ใส่ที่อยู่ของคุณ">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary">บันทึก</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
-        <button type="button" class="btn btn-primary">บันทึก</button>
       </div>
     </div>
     </div>
