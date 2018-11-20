@@ -130,14 +130,13 @@
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="index.php">
-                <!-- <img src="images/shop.png" width="50" height="40" class="d-inline-block align-center" alt=""> -->
+            <a class="navbar-brand" href="../../public/index.php">
             20Shop
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">หน้าหลัก</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../public/index.php">หน้าหลัก</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">ติดต่อเรา</a>
@@ -148,7 +147,7 @@
                 </ul>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown active">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" style="display: inline-block;">
                             <?php
@@ -157,13 +156,13 @@
                             <i class="fas fa-user"></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown"  style="padding-top: 0px;padding-bottom: 00px;">
-                                <a class="dropdown-item" href="../app/views/profile_member.php">ข้อมูลสมาชิก</a>
-                                <a class="dropdown-item" href="../app/views/product_status.php">สถานะสินค้า</a>
-                                <a class="dropdown-item" href="../app/src/logout.php">ออกจากระบบ</a>
+                                <a class="dropdown-item" href="profile_member.php">ข้อมูลสมาชิก</a>
+                                <a class="dropdown-item" href="product_status.php">สถานะสินค้า</a>
+                                <a class="dropdown-item" href="../src/logout.php">ออกจากระบบ</a>
                             </div>
                         </li>
                     </ul>
-                    <a class="nav-link" href="../app/views/detail_orders.php" style="display: inline-block;padding-left: 10px;color:#6c757d;padding-right: 0px;">
+                    <a class="nav-link" href="detail_orders.php" style="display: inline-block;padding-left: 10px;color:#6c757d;padding-right: 0px;">
                         <i class="fas fa-shopping-cart p">(<?php echo $orders_count; ?>)</i>
                     </a>
                 </div>
@@ -174,51 +173,48 @@
 <!-- row 1 -->
 <div class="container">
     <div class="row">
-        <div class="col-10">
-        <div class="card">
-          <h5 class="card-header">ข้อมูลสมาชิก</h5>
-          <div class="card-body">
-        <form style="margin-left:40px; font-size:25px;">
-          <div class="form-row">
-            <div class="col form-group col-md-12">
-              <label>ชื่อ : </label>
-              <?php echo $member["name"]; ?>
+        <div class="col-6" style="margin-top: 30px;margin-left: 300px;">
+            <div class="card">
+            <h5 class="card-header">ข้อมูลสมาชิก</h5>
+                <div class="card-body" style="padding-left: 40px;">
+                    <div class="form-group">
+                        <label>ชื่อ : </label>
+                        <?php echo $member["name"]; ?>
+                    </div>
+                    <div class="form-group">
+                        <label>Username : </label>
+                        <?php echo $member["username"]; ?>
+                    </div>
+                    <div class="form-group">
+                        <label>Password : </label>
+                        <?php echo $member["password"]; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail : </label>
+                        <?php echo $member["email"]; ?>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>เบอร์โทรศัพท์ : </label>
+                        <?php echo $member["tel"]; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Birthday :</label>
+                        <?php echo $member["brithday"]; ?>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ที่อยู่ : </label>
+                        <?php echo $member["address"]; ?>
+                    </div>
+
+                    <!-- <div class="form-group" style="margin:40px 0px;"> -->
+                        <a class="btn btn-outline-warning float-right" href="edit_teacher.php?id=<?php echo $id; ?>" role="button"><i class="fas fa-edit fa-lg icon"></i>แก้ไขข้อมูล</a>
+                    <!-- </div> -->
+                </div>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label>Username : </label>
-              <?php echo $member["username"]; ?>
-            </div>
-            <div class="form-group col-md-6">
-              <label>Password : </label>
-              <?php echo $member["password"]; ?>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label>E-mail : </label>
-              <?php echo $member["email"]; ?>
-            </div>
-            <div class="form-group col-md-6">
-              <label>เบอร์โทรศัพท์ : </label>
-              <?php echo $member["tel"]; ?>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label>Birthday :</label>
-              <?php echo $member["brithday"]; ?>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>ที่อยู่ : </label>
-            <?php echo $member["address"]; ?>
-          </div>
-          <div class="form-group" style="margin:40px 0px;">
-            <a class="btn btn-outline-warning" href="edit_teacher.php?id=<?php echo $id; ?>" role="button"><i class="fas fa-edit fa-lg icon"></i>แก้ไขข้อมูล</a>
-          </div>
-        </div>
         </div>
     </div>
 </div>
