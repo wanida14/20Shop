@@ -186,7 +186,7 @@
                                 </li>
                             </ul>
                             <a class="nav-link" href="detail_orders.php" style="display: inline-block;padding-left: 10px;color:#6c757d;padding-right: 0px;">
-                                <i class="fas fa-shopping-cart p" style="color:#353b48;>(<?php echo $orders_count; ?>)</i>
+                                <i class="fas fa-shopping-cart p" style="color:#353b48;">(<?php echo $orders_count; ?>)</i>
                             </a>
                         </div>
                     <?php } ?>

@@ -199,7 +199,7 @@
 
                     <div class="form-group">
                         <label>Birthday :</label>
-                        <?php echo $member["brithday"]; ?>
+                        <?php echo $member["birthday"]; ?>
                     </div>
 
                     <div class="form-group">

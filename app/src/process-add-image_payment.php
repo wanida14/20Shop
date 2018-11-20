@@ -10,7 +10,7 @@
         //upload image file
         $ext = pathinfo(basename($_FILES['myfile']['name']), PATHINFO_EXTENSION); //นามสกุลไฟล์
         $new_image_name = 'img-' .uniqid().".".$ext; //สุ่มชื่อไฟล์ใหม่
-        $image_path = "images/"; //เส้นทางที่จะเก็บไฟล์ภาพไว้
+        $image_path = "admin/images/"; //เส้นทางที่จะเก็บไฟล์ภาพไว้
         $upload_path = $image_path.$new_image_name;
         $success = move_uploaded_file($_FILES['myfile']['tmp_name'],$upload_path); //ฟังค์ชั่นการอัพโหลดไฟล์เก็บค่า true,fales ไว้ในตัวแปล
         if ($success == FALSE) { //เช็คการอัพโหลดไฟล์
