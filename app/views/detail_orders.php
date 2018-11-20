@@ -145,12 +145,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="../../public/index.php">
-                <!-- <img src="images/shop.png" width="50" height="40" class="d-inline-block align-center" alt=""> -->
             20Shop
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="../../public/index.php">หน้าหลัก</a>
                     </li>
                     <li class="nav-item">
@@ -174,14 +173,14 @@
                                         <i class="fas fa-user"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown"  style="padding-top: 0px;padding-bottom: 00px;">
-                                        <a class="dropdown-item" href="#">ข้อมูลสมาชิก</a>
+                                        <a class="dropdown-item" href="profile_member.php">ข้อมูลสมาชิก</a>
                                         <a class="dropdown-item" href="product_status.php">สถานะสินค้า</a>
-                                        <a class="dropdown-item" href="../app/src/logout.php">ออกจากระบบ</a>
+                                        <a class="dropdown-item" href="../src/logout.php">ออกจากระบบ</a>
                                     </div>
                                 </li>
                             </ul>
                             <a class="nav-link" href="detail_orders.php" style="display: inline-block;padding-left: 10px;color:#6c757d;padding-right: 0px;">
-                                <i class="fas fa-shopping-cart p">(<?php echo $orders_count; ?>)</i>
+                                <i class="fas fa-shopping-cart p" style="color:#353b48;">(<?php echo $orders_count; ?>)</i>
                             </a>
                         </div>
                     <?php } ?>
