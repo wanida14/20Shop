@@ -149,7 +149,6 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="../../public/index.php">
-                <!-- <img src="images/shop.png" width="50" height="40" class="d-inline-block align-center" alt=""> -->
             20Shop
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -169,7 +168,7 @@
                     if ($status_id == '2') { ?>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown active">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false" style="display: inline-block;">
                                     <?php
@@ -178,9 +177,9 @@
                                     <i class="fas fa-user"></i>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown"  style="padding-top: 0px;padding-bottom: 00px;">
-                                        <a class="dropdown-item" href="#">ข้อมูลสมาชิก</a>
+                                        <a class="dropdown-item" href="profile_member.php">ข้อมูลสมาชิก</a>
                                         <a class="dropdown-item" href="product_status.php">สถานะสินค้า</a>
-                                        <a class="dropdown-item" href="../app/src/logout.php">ออกจากระบบ</a>
+                                        <a class="dropdown-item" href="../src/logout.php">ออกจากระบบ</a>
                                     </div>
                                 </li>
                             </ul>
