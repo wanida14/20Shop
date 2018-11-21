@@ -25,6 +25,9 @@
     .m-left {
         background-color: bisque;
     }
+    .icon {
+        padding-right: 5px;
+    }
 </style>
 
 <body>
@@ -122,7 +125,7 @@
                                             <a href=\"edit_product.php?id={$row["id"]}\" class='btn btn-outline-info'>
                                                 <i class='fas fa-address-book fa-lg icon'></i>แก้ไข</a>
                                             <a href=\"../../src/Admin/Student/process_delete_student.php?id={$row["id"]}\" class='btn btn-outline-danger'>
-                                                <i class='fas fa-trash-alt fa-lg icon'></i> ลบ</a>
+                                                <i class='fas fa-trash-alt fa-lg'></i> ลบ</a>
                                         </td>";
                                 echo "</tr>";
                             $i++;
