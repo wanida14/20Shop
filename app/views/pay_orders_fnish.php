@@ -151,10 +151,7 @@
                         <a class="nav-link" href="../../public/index.php">หน้าหลัก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ติดต่อเรา</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ช่องทางการชำระเงิน</a>
+                        <a class="nav-link" href="payment.php">ช่องทางการชำระเงิน</a>
                     </li>
                 </ul>
                 <?php

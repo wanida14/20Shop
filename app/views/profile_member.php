@@ -166,11 +166,16 @@
             </div>
         </div>
     </nav>
+    <?php if(isset($_GET['update_profile'])) { ?>
+        <div class="alert alert-success" role="alert">
+            แก้ไขข้อมูลเรียบร้อยแล้วค่ะ
+        </div>
+    <?php  } ?>
 
 <!-- row 1 -->
 <div class="container">
     <div class="row">
-        <div class="col-6" style="margin-top: 30px;margin-left: 300px;">
+        <div class="col-6" style="margin-top: 20px;margin-left: 300px;">
             <div class="card">
             <h5 class="card-header">ข้อมูลสมาชิก</h5>
                 <div class="card-body" style="padding-left: 40px;">
@@ -208,12 +213,67 @@
                     </div>
 
                     <!-- <div class="form-group" style="margin:40px 0px;"> -->
-                        <a class="btn btn-outline-warning float-right" href="edit_teacher.php?id=<?php echo $id; ?>" role="button"><i class="fas fa-edit fa-lg icon"></i>แก้ไขข้อมูล</a>
+                    <a class="btn btn-outline-warning float-right" href="#" role="button" data-toggle="modal" data-target="#edit-frofile">
+                        <i class="fas fa-edit fa-lg icon"></i>แก้ไขข้อมูล</a>
                     <!-- </div> -->
                 </div>
             </div>
         </div>
     </div>
+</div>
+<!-- modal form register -->
+<div class="modal" id="edit-frofile" tabindex="-1" role="dialog">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">แก้ไขข้อมูล</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+    <form method="post" action="../src/process_update_data_member.php">
+        <div class="form-group">
+        <label for="recipient-name" class="col-form-label">ชื่อ - สกุล</label>
+        <input type="text" name="name" class="form-control" id="name" value="<?php echo $member["name"]; ?>">
+        <input type="hidden" name="id" value="<?php echo $id; ?>">
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Username</label>
+            <input id="username" type="text" name="username" class="form-control" value="<?php echo $member["username"]; ?>">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input id="password" type="text" name="password" class="form-control" value="<?php echo $member["password"]; ?>">
+        </div>
+        </div>
+        <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">วันเกิด</label>
+            <input id="birthday" type="date" name="birthday" class="form-control" value="<?php echo $member["birthday"]; ?>">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">เบอร์โทรศัพท์</label>
+            <input id="tel" type="text" name="tel" class="form-control" value="<?php echo $member["tel"]; ?>">
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="message-text" class="col-form-label">E-mail</label>
+        <input type="text" class="form-control" name="email" id="email" value="<?php echo $member["email"]; ?>">
+        </div>
+        <div class="form-group">
+        <label for="message-text" class="col-form-label">ที่อยู่</label>
+        <input type="text" class="form-control" name="address" id="address" value="<?php echo $member["address"]; ?>">
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+        <button type="submit" class="btn btn-primary">บันทึก</button>
+        </div>
+    </form>
+    </div>
+</div>
+</div>
 </div>
     
 <!-- 5. Footage -->

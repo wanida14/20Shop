@@ -43,14 +43,14 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-5 style-form">
-                <form>
+                <form method="post" action="../../app/src/admin/process-login-admin.php">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" name="username" class="form-control" id="email1" placeholder="Enter Username">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Enter Password">
                     </div>
                     <button type="submit" class="btn btn-success">Login</button>
                 </form>
