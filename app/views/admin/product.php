@@ -79,6 +79,12 @@
             </div>
         </div>
     </nav>
+    <?php 
+    if (isset($_GET['category_id_update'])) { ?>
+        <div class="alert alert-success" role="alert">
+            แก้ไขข้อมูลเรียบร้อยแล้วค่ะ
+        </div>
+    <?php } ?>
     <!-- content -->
     <div class="container" style="background-color: white;margin-top: 30px;">
     <div class="text-center" style="padding-top: 20px;"><h3>ข้อมูลสินค้า</h3></div>

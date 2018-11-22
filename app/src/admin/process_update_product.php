@@ -31,6 +31,6 @@
         }
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            header("Location: ../../views/admin/product.php?category_id=$category_id");        
+            header("Location: ../../views/admin/product.php?category_id_update=$category_id");        
         }
 ?>
