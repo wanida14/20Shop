@@ -236,7 +236,7 @@
                     ?>
             </div>
             
-            <!-- modal form edit address -->
+            <!-- modal product detail -->
             <?php 
                 $sql = "SELECT * FROM payment";
                 $result_payment = mysqli_query($conn, $sql);

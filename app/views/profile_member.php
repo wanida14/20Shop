@@ -113,15 +113,7 @@
             $result2 = mysqli_query($conn, $sql);
             $orders_count = mysqli_num_rows($result2);
         }
-
-        $id = $_SESSION['id'];
-        $sql = "SELECT* FROM member
-                WHERE id = '$id'";
-        // echo $sql; exit();
-
-        $result = mysqli_query($conn, $sql);
-        $member = mysqli_fetch_array($result);
-        
+       
     ?>
     <!-- menu bar -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fff;height: 56px;padding-top: 5px;">

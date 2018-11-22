@@ -40,7 +40,8 @@
                         payment.date AS date,
                         payment.price AS price,
                         payment.payment_status AS payment_status,
-                        payment.id AS payment_id
+                        payment.id AS payment_id,
+                        payment.payment_code AS payment_code
                     FROM payment
                     INNER JOIN member ON payment.member_id = member.id";
         $result_payment = mysqli_query($conn, $sql);
@@ -96,9 +97,9 @@
                             <th>ลำดับที่</th>
                             <th>วันที่</th>
                             <th>ชื่อลูกค้า</th>
-                            <th>ราคา</th>
-                            <th>สถานะการจ่ายเงิน</th>
-                            <th></th>
+                            <th>ยออดรวม</th>
+                            <th style="width: 194px;">สถานะการจ่ายเงิน</th>
+                            <th  style="width: 274px;"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,9 +113,9 @@
                                     echo "<td>" . $row["price"] . "</td>";
                                     echo "<td style=\"color:green\">" . $row["payment_status"] . "</td>";
                                     echo "<td class=\"button-style\">
-                                            <a href=\"datas_member.php?id={$row["payment_id"]}\" class='btn btn-outline-info'>
-                                                <i class='fas fa-address-book fa-lg icon'></i>ดูข้อมูล</a>
-                                            <a href=\"../../src/admin/process_delete_order.php?id={$row["payment_id"]}\" class='btn btn-outline-danger'>
+                                            <a href=\"order_detail.php?id={$row["payment_id"]}\" class='btn btn-outline-info'>
+                                                <i class='fas fa-address-book fa-lg icon'></i>รายละเอียด</a>
+                                            <a href=\"../../src/admin/process_delete_order.php?id={$row["payment_id"]}&payment_code={$row["payment_code"]}\" class='btn btn-outline-danger'>
                                                 <i class='fas fa-trash-alt fa-lg'></i> ลบ</a>
                                         </td>";
                                 echo "</tr>";

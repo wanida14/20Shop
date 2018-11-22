@@ -213,7 +213,7 @@
                     while ($row = mysqli_fetch_array($result_order)) {
                     echo "<tr>";
                         echo "<td>" . $i . "</td>";
-                        echo '<td><img src ="images/' . $row["image"] . '" height="50" width="50"></td>';
+                        echo '<td><img src ="admin/images/' . $row["image"] . '" height="50" width="50"></td>';
                         echo "<td>" . $row["product_name"] . "</td>";
                         echo "<td>" . $row["price"] . " บาท</td>";
                     echo "</tr>";

@@ -121,7 +121,7 @@
             </div>
         </div>
     </div>
-    <!-- modal form register -->
+    <!-- modal form add category -->
     <div class="modal" id="add_category" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
