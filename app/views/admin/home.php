@@ -25,6 +25,9 @@
     .m-left {
         background-color: bisque;
     }
+    .icon {
+        padding-right: 5px;
+    }
 </style>
 
 <body>
@@ -60,6 +63,9 @@
                         <a class="nav-link" href="add_product.php">เพิ่มสินค้า</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="category.php">หมวดหมู่สินค้า</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="order.php">ออเดอร์</a>
                     </li>
                 </ul>
@@ -69,12 +75,18 @@
             </div>
         </div>
     </nav>
+    <?php 
+    if (isset($_GET['delete_member'])) { ?>
+        <div class="alert alert-success" role="alert">
+            ลบข้อมูลสมาชิกเรียบร้อยแล้วค่ะ
+        </div>
+    <?php } ?>
     <!-- content -->
     <div class="container" style="background-color: white;margin-top: 30px;">
         <div class="text-center" style="padding-top: 20px;"><h3>ข้อมูลสมาชิก</h3></div>
         <div class="row">
             <div class="col-12">
-                <table class="table text-center" style=margin-top:30px;">
+                <table class="table text-center" style="margin-top:30px;">
                     <thead>
                         <tr>
                             <th>ลำดับที่</th>
@@ -96,8 +108,8 @@
                                     echo "<td class=\"button-style\">
                                             <a href=\"datas_member.php?id={$row["id"]}\" class='btn btn-outline-info'>
                                                 <i class='fas fa-address-book fa-lg icon'></i>ดูข้อมูล</a>
-                                            <a href=\"../../src/Admin/Student/process_delete_student.php?id={$row["id"]}\" class='btn btn-outline-danger'>
-                                                <i class='fas fa-trash-alt fa-lg icon'></i> ลบ</a>
+                                            <a href=\"../../src/admin/process_delete_member.php?id={$row["id"]}\" class='btn btn-outline-danger'>
+                                                <i class='fas fa-trash-alt fa-lg'></i> ลบ</a>
                                         </td>";
                                 echo "</tr>";
                             $i++;

@@ -36,10 +36,8 @@
 
         require('../../src/connect.php'); // เรียกใช้ไฟล์...
 
-        $product_id = $_GET['id'];
-        $sql = "SELECT * FROM product WHERE id='$product_id'";
-        $result_product = mysqli_query($conn, $sql);
-        $product = mysqli_fetch_array($result_product);
+        $sql_category = "SELECT * FROM category";
+        $category = mysqli_query($conn, $sql_category);
 
     ?>
     <!-- menu bar -->
@@ -58,10 +56,10 @@
                         <a class="nav-link" href="home.php">สมาชิก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="product.php">สินค้า</a>
+                        <a class="nav-link" href="product.php">สินค้า</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="add_product.php">เพิ่มสินค้า</a>
+                        <a class="nav-link active" href="add_product.php">เพิ่มสินค้า</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="category.php">หมวดหมู่สินค้า</a>
@@ -78,32 +76,45 @@
     </nav>
     <!-- content -->
     <div class="container" style="background-color: white;margin-top: 30px;">
-    <h3 class="text-center" style="padding-top: 20px;">แก้ไขข้อมูลสินค้า</h3>
+    <h3 class="text-center" style="padding-top: 20px;">เพิ่มสินค้า</h3>
         <div class="row" style="padding-left: 130px;padding-right: 130px;">
             <div class="col-12">
-                <form method="post" action="../../src/Admin/process_update_product.php" enctype="multipart/form-data" style="margin:40px 20px;">
+                <form method="post" action="../../src/Admin/process_add_product.php" enctype="multipart/form-data" style="margin:40px 20px;">
                     <div class="form-row">
                         <div class="col form-group col-md-6">
                         <label for="inputEmail4">ชื่อสินค้า</label>
-                        <input id="name" type="text" name="name" class="form-control" value="<?php echo $product['name']; ?>">
-                        <input type="hidden" name="category_id" value="<?php echo $product['category_id']; ?>">
-                        <input type="hidden" name="id" value="<?php echo $product['id']; ?>">
+                        <input id="name" type="text" name="name" class="form-control">            
                     </div>
                     <div class="col form-group col-md-6">
                         <label for="inputEmail4">ราคา</label>
-                        <input id="price" type="text" name="price" class="form-control" value="<?php echo $product['price']; ?>">
+                        <input id="price" type="text" name="price" class="form-control">
                     </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">รายละเอียด</label>
-                        <input id="detail" type="text" name="detail" class="form-control" value="<?php echo $product['detail']; ?>">
+                        <input id="detail" type="text" name="detail" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">รูปภาพ</label>
-                        <input id="myfile" type="file" name="myfile" class="form-control-file">
+                    <div class="form-row">
+                        <div class="col form-group col-md-4" style="margin-bottom: 0px;">
+                            <label for="inputEmail4">เลือกหมวดหมู่สินค้า</label>
+                            <select id="category_id" class="form-control" name="category_id">
+                                <option value="" >---- เลือก ----</option>
+                                <?php
+                                while ($row = mysqli_fetch_array($category)) {
+                                        echo "<option value=\"{$row['id']}\">{$row['name']}</option>";                        
+                                    }
+                                ?>
+                            </select>            
+                        </div>
+                        <div class="col form-group col-md-4" style="margin-bottom: 0px;">
+                            <label for="exampleFormControlFile1">รูปภาพ</label>
+                            <input id="myfile" type="file" name="myfile" class="form-control-file">
+                        </div>                   
                     </div>
-                <button id="save" type="submit" class="btn btn-outline-info"><i class="fas fa-save fa-lg icon"></i>บันทึก</button>
-            </form>
+                    <div style="padding-top: 30px;">
+                        <button id="save" type="submit" class="btn btn-outline-info"><i class="fas fa-save fa-lg icon"></i>บันทึก</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

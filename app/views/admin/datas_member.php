@@ -57,13 +57,16 @@
                         <a class="nav-link active" href="home.php">สมาชิก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">สินค้า</a>
+                        <a class="nav-link" href="product.php">สินค้า</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="add_product.php">เพิ่มสินค้า</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ออเดอร์</a>
+                        <a class="nav-link" href="category.php">หมวดหมู่สินค้า</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.php">ออเดอร์</a>
                     </li>
                 </ul>
                 <div class="text-right">

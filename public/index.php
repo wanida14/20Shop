@@ -364,7 +364,7 @@
         while ($row = mysqli_fetch_array($result)) {
             echo '<div class="col-3" style="margin-bottom: 15px;">';
                 echo "<div class=\"card zoom pointer\" data-toggle=\"modal\" data-target=\"#product" . $row["id"] ."\">";
-                    echo "<img class=\"card-img-top\" src=\"../app/views/images/" . $row["image"] . "\" height=\"200\" width=\"120\">";
+                    echo "<img class=\"card-img-top\" src=\"../app/views/admin/images/" . $row["image"] . "\" height=\"200\" width=\"120\">";
                     echo '<div class="card-body">';
                         echo "<p class=\"card-text font-product text-center\">" . $row["name"] ."</p>";
                     echo '</div>';
@@ -401,7 +401,7 @@
                             <form method="post" action="../app/src/process-add-product.php">
                             <div class="form-group">
                                 <div class="col-12 text-center">
-                                    <img class="card-img-top" src="../app/views/images/<?php echo $row["image"]; ?>" style="width: 250px;height: 190px;">
+                                    <img class="card-img-top" src="../app/views/admin/images/<?php echo $row["image"]; ?>" style="width: 250px;height: 190px;">
                                 </div>
                                 <p for="recipient-name" class="col-form-label"><?php echo "ชื่อสินค้า : ".$row["name"]; ?></p>
                                 <p for="recipient-name" class="col-form-label"><?php echo "ราคาสินค้า : ".$row["price"]; ?></p>

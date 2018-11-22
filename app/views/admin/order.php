@@ -36,17 +36,14 @@
 
         require('../../src/connect.php'); // เรียกใช้ไฟล์...
 
-        if (isset($_GET['category_id'])) {
-            $category_id = $_GET['category_id'];
-            $sql = "SELECT * FROM product WHERE category_id='$category_id'";
-            $result_product = mysqli_query($conn, $sql);
-        } else {
-            $sql = "SELECT * FROM product";
-            $result_product = mysqli_query($conn, $sql);
-
-        }
-        $sql_category = "SELECT * FROM category";
-        $category = mysqli_query($conn, $sql_category);
+        $sql = "SELECT  member.name AS member_name,
+                        payment.date AS date,
+                        payment.price AS price,
+                        payment.payment_status AS payment_status,
+                        payment.id AS payment_id
+                    FROM payment
+                    INNER JOIN member ON payment.member_id = member.id";
+        $result_payment = mysqli_query($conn, $sql);
     ?>
     <!-- menu bar -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fff;height: 56px;padding-top: 5px;">
@@ -64,7 +61,7 @@
                         <a class="nav-link" href="home.php">สมาชิก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="product.php">สินค้า</a>
+                        <a class="nav-link" href="product.php">สินค้า</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="add_product.php">เพิ่มสินค้า</a>
@@ -73,7 +70,7 @@
                         <a class="nav-link" href="category.php">หมวดหมู่สินค้า</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="order.php">ออเดอร์</a>
+                        <a class="nav-link active" href="order.php">ออเดอร์</a>
                     </li>
                 </ul>
                 <div class="text-right">
@@ -83,69 +80,41 @@
         </div>
     </nav>
     <?php 
-    if (isset($_GET['category_id_update'])) { ?>
+    if (isset($_GET['delete_payment'])) { ?>
         <div class="alert alert-success" role="alert">
-            แก้ไขข้อมูลสินค้าเรียบร้อยแล้วค่ะ
-        </div>
-    <?php } ?>
-    <?php 
-    if (isset($_GET['add_product'])) { ?>
-        <div class="alert alert-success" role="alert">
-            เพิ่มข้อมูลสินค้าเรียบร้อยแล้วค่ะ
-        </div>
-    <?php } ?>
-    <?php 
-    if (isset($_GET['delete_product'])) { ?>
-        <div class="alert alert-success" role="alert">
-            ลบข้อมูลสินค้าเรียบร้อยแล้วค่ะ
+            ลบข้อมูลการสั่งซื้อเรียบร้อยแล้วค่ะ
         </div>
     <?php } ?>
     <!-- content -->
     <div class="container" style="background-color: white;margin-top: 30px;">
-    <div class="text-center" style="padding-top: 20px;"><h3>ข้อมูลสินค้า</h3></div>
-        <form method="post" action="category_id.php">
-            <div class="form-row">
-                <div class="col form-group col-md-4" style="margin-bottom: 0px;">
-                    <label for="inputEmail4">เลือกหมวดหมู่สินค้า</label>
-                    <select id="category_id" class="form-control" name="category_id">
-                        <option value="" >---- เลือก ----</option>
-                        <?php
-                        while ($row = mysqli_fetch_array($category)) {
-                                echo "<option value=\"{$row['id']}\">{$row['name']}</option>";                        
-                            }
-                        ?>
-                    </select>            
-                </div>                   
-            </div>
-            <button id="ok" type="submit" class="btn btn-outline-success">ตกลง</button>
-        </form>
+        <div class="text-center" style="padding-top: 20px;"><h3>ข้อมูลสมาชิก</h3></div>
         <div class="row">
             <div class="col-12">
                 <table class="table text-center" style="margin-top:30px;">
                     <thead>
                         <tr>
                             <th>ลำดับที่</th>
-                            <th>ภาพ</th>
-                            <th style="width: 144px;">ชื่อสินค้า</th>
+                            <th>วันที่</th>
+                            <th>ชื่อลูกค้า</th>
                             <th>ราคา</th>
-                            <th style="width: 374px;">รายละเอียด</th>
+                            <th>สถานะการจ่ายเงิน</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             $i = 1;
-                            while ($row = mysqli_fetch_array($result_product)) {
+                            while ($row = mysqli_fetch_array($result_payment)) {
                                 echo "<tr>";
                                     echo "<td>" . $i . "</td>";
-                                    echo '<td><img src ="images/' . $row["image"] . '" height="60" width="60"></td>';
-                                    echo "<td>" . $row["name"] . "</td>";
+                                    echo "<td>" . $row["date"] . "</td>";
+                                    echo "<td>" . $row["member_name"] . "</td>";
                                     echo "<td>" . $row["price"] . "</td>";
-                                    echo "<td>" . $row["detail"] . "</td>";
+                                    echo "<td style=\"color:green\">" . $row["payment_status"] . "</td>";
                                     echo "<td class=\"button-style\">
-                                            <a href=\"edit_product.php?id={$row["id"]}\" class='btn btn-outline-info'>
-                                                <i class='fas fa-address-book fa-lg icon'></i>แก้ไข</a>
-                                            <a href=\"../../src/admin/process_delete_product.php?id={$row["id"]}\" class='btn btn-outline-danger'>
+                                            <a href=\"datas_member.php?id={$row["payment_id"]}\" class='btn btn-outline-info'>
+                                                <i class='fas fa-address-book fa-lg icon'></i>ดูข้อมูล</a>
+                                            <a href=\"../../src/admin/process_delete_order.php?id={$row["payment_id"]}\" class='btn btn-outline-danger'>
                                                 <i class='fas fa-trash-alt fa-lg'></i> ลบ</a>
                                         </td>";
                                 echo "</tr>";

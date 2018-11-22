@@ -36,17 +36,8 @@
 
         require('../../src/connect.php'); // เรียกใช้ไฟล์...
 
-        if (isset($_GET['category_id'])) {
-            $category_id = $_GET['category_id'];
-            $sql = "SELECT * FROM product WHERE category_id='$category_id'";
-            $result_product = mysqli_query($conn, $sql);
-        } else {
-            $sql = "SELECT * FROM product";
-            $result_product = mysqli_query($conn, $sql);
-
-        }
-        $sql_category = "SELECT * FROM category";
-        $category = mysqli_query($conn, $sql_category);
+        $sql = "SELECT * FROM category";
+        $result_category = mysqli_query($conn, $sql);
     ?>
     <!-- menu bar -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fff;height: 56px;padding-top: 5px;">
@@ -64,13 +55,13 @@
                         <a class="nav-link" href="home.php">สมาชิก</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="product.php">สินค้า</a>
+                        <a class="nav-link" href="product.php">สินค้า</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="add_product.php">เพิ่มสินค้า</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="category.php">หมวดหมู่สินค้า</a>
+                        <a class="nav-link active" href="category.php">หมวดหมู่สินค้า</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="order.php">ออเดอร์</a>
@@ -83,70 +74,43 @@
         </div>
     </nav>
     <?php 
-    if (isset($_GET['category_id_update'])) { ?>
+    if (isset($_GET['add_category'])) { ?>
         <div class="alert alert-success" role="alert">
-            แก้ไขข้อมูลสินค้าเรียบร้อยแล้วค่ะ
+            เพิ่มข้อมูลหมวดหมู่สินค้าเรียบร้อยแล้วค่ะ
         </div>
     <?php } ?>
     <?php 
-    if (isset($_GET['add_product'])) { ?>
+    if (isset($_GET['delete_category'])) { ?>
         <div class="alert alert-success" role="alert">
-            เพิ่มข้อมูลสินค้าเรียบร้อยแล้วค่ะ
-        </div>
-    <?php } ?>
-    <?php 
-    if (isset($_GET['delete_product'])) { ?>
-        <div class="alert alert-success" role="alert">
-            ลบข้อมูลสินค้าเรียบร้อยแล้วค่ะ
+            ลบข้อมูลหมวดหมู่สินค้าเรียบร้อยแล้วค่ะ
         </div>
     <?php } ?>
     <!-- content -->
     <div class="container" style="background-color: white;margin-top: 30px;">
-    <div class="text-center" style="padding-top: 20px;"><h3>ข้อมูลสินค้า</h3></div>
-        <form method="post" action="category_id.php">
-            <div class="form-row">
-                <div class="col form-group col-md-4" style="margin-bottom: 0px;">
-                    <label for="inputEmail4">เลือกหมวดหมู่สินค้า</label>
-                    <select id="category_id" class="form-control" name="category_id">
-                        <option value="" >---- เลือก ----</option>
-                        <?php
-                        while ($row = mysqli_fetch_array($category)) {
-                                echo "<option value=\"{$row['id']}\">{$row['name']}</option>";                        
-                            }
-                        ?>
-                    </select>            
-                </div>                   
-            </div>
-            <button id="ok" type="submit" class="btn btn-outline-success">ตกลง</button>
-        </form>
-        <div class="row">
+    <div class="text-center" style="padding-top: 20px;"><h3>หมวดหมู่สินค้า</h3></div>       
+        <div class="row" style="padding-left: 130px;padding-right: 130px;">
+            <a class="btn btn-outline-success ml-auto" href="#" role="button" data-toggle="modal" data-target="#add_category">เพิ่มหมวดหมู่สินค้า</a>
             <div class="col-12">
                 <table class="table text-center" style="margin-top:30px;">
                     <thead>
                         <tr>
                             <th>ลำดับที่</th>
-                            <th>ภาพ</th>
-                            <th style="width: 144px;">ชื่อสินค้า</th>
-                            <th>ราคา</th>
-                            <th style="width: 374px;">รายละเอียด</th>
-                            <th></th>
+                            <th style="width: 144px;">ชื่อ</th>
+                            <th style="width: 374px;"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                             $i = 1;
-                            while ($row = mysqli_fetch_array($result_product)) {
+                            while ($row = mysqli_fetch_array($result_category)) {
                                 echo "<tr>";
                                     echo "<td>" . $i . "</td>";
-                                    echo '<td><img src ="images/' . $row["image"] . '" height="60" width="60"></td>';
                                     echo "<td>" . $row["name"] . "</td>";
-                                    echo "<td>" . $row["price"] . "</td>";
-                                    echo "<td>" . $row["detail"] . "</td>";
                                     echo "<td class=\"button-style\">
-                                            <a href=\"edit_product.php?id={$row["id"]}\" class='btn btn-outline-info'>
-                                                <i class='fas fa-address-book fa-lg icon'></i>แก้ไข</a>
-                                            <a href=\"../../src/admin/process_delete_product.php?id={$row["id"]}\" class='btn btn-outline-danger'>
-                                                <i class='fas fa-trash-alt fa-lg'></i> ลบ</a>
+                                            <a href=\"edit_product.php?id=\"".$row["id"]."\" class=\"btn btn-outline-info\">
+                                                <i class=\"fas fa-address-book fa-lg icon\"></i>แก้ไข</a>
+                                            <a href=\"../../src/admin/process_delete_category.php?id={$row["id"]}\" class=\"btn btn-outline-danger\">
+                                                <i class=\"fas fa-trash-alt fa-lg\"></i> ลบ</a>
                                         </td>";
                                 echo "</tr>";
                             $i++;
@@ -156,6 +120,31 @@
                         ?>
             </div>
         </div>
+    </div>
+    <!-- modal form register -->
+    <div class="modal" id="add_category" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">เพิ่มหมวดหมู่สินค้า</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="../../src/admin/process_add_category.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">ชื่อหมวดหมู่สินค้า</label>
+            <input type="text" name="name" class="form-control" id="name">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary">บันทึก</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
     </div>
 
 </body>
