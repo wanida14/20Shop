@@ -88,7 +88,7 @@
     <?php } ?>
     <!-- content -->
     <div class="container" style="background-color: white;margin-top: 30px;">
-        <div class="text-center" style="padding-top: 20px;"><h3>ข้อมูลสมาชิก</h3></div>
+        <div class="text-center" style="padding-top: 20px;"><h3>รายการสั่งซื้อสินค้า</h3></div>
         <div class="row">
             <div class="col-12">
                 <table class="table text-center" style="margin-top:30px;">

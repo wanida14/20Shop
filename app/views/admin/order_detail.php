@@ -96,10 +96,22 @@
             แก้ไข 'สถานะการจ่ายเงิน' เรียบร้อยแล้วค่ะ
         </div>
     <?php } ?>
+    <?php 
+    if (isset($_GET['update_delivery_status'])) { ?>
+        <div class="alert alert-success" role="alert">
+            แก้ไข 'สถานะการจัดส่ง' เรียบร้อยแล้วค่ะ
+        </div>
+    <?php } ?>
+    <?php 
+    if (isset($_GET['update_ems_number'])) { ?>
+        <div class="alert alert-success" role="alert">
+            แก้ไข 'เลข EMS' เรียบร้อยแล้วค่ะ
+        </div>
+    <?php } ?>
     <!-- row 1 -->
     <div class="container">
         <div class="row">
-            <div class="col-6" style="margin-top: 20px;margin-left: 300px;">
+            <div class="col-6" style="margin-top: 20px;margin-left: 300px;margin-bottom:30px;">
                 <div class="card">
                 <h5 class="card-header">รายละเอียดการสั่งซื้อ</h5>
                     <div class="card-body" style="padding-left: 40px;">
@@ -112,7 +124,7 @@
                             <?php echo $payment["payment_code"]; ?>
                         </div>
                         <div class="form-group">
-                            <label>ชื่อ - นามสกุล ลูกค้า : </label>
+                            <label>ชื่อ - นามสกุล : </label>
                             <?php echo $payment["member_name"]; ?>
                         </div>
 
@@ -131,14 +143,14 @@
 
                         <div class="form-group">
                             <label>สถานะการจัดส่ง :</label>
-                            <?php echo $payment["delivery_status"]; ?>
-                            <button type="button" class="btn btn-primary btn-sm float-right">แก้ไขสถานะ</button>
+                            <span style="color:orange"><?php echo $payment["delivery_status"]; ?></span>
+                            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#edit_delivery_status">แก้ไขสถานะ</button>
                         </div>
 
                         <div class="form-group">
                             <label>เลข EMS : </label>
                             <?php echo $payment["ems_number"]; ?>
-                            <button type="button" class="btn btn-primary btn-sm float-right">แก้ไขสถานะ</button>
+                            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#edit_ems_number">แก้ไขสถานะ</button>
                         </div>
 
                         <div class="form-group">
@@ -233,6 +245,60 @@
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">แก้ไขสถานะ</label>
             <input type="text" name="payment_status" class="form-control" id="payment_status">
+            <input type="hidden" name="payment_id" class="form-control" value="<?php echo $payment['payment_id']; ?>">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary">บันทึก</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- modal form edit_delivery_status -->
+    <div class="modal" id="edit_delivery_status" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แก้ไขสถานะการจัดส่งสินค้า</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="../../src/admin/process_update_order.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">แก้ไขสถานะ</label>
+            <input type="text" name="delivery_status" class="form-control" id="delivery_status">
+            <input type="hidden" name="payment_id" class="form-control" value="<?php echo $payment['payment_id']; ?>">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+            <button type="submit" class="btn btn-primary">บันทึก</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- modal form edit_ems_number -->
+    <div class="modal" id="edit_ems_number" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">แก้ไขเลข EMS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="../../src/admin/process_update_order.php">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">แก้ไขสถานะ</label>
+            <input type="text" name="ems_number" class="form-control" id="ems_number">
             <input type="hidden" name="payment_id" class="form-control" value="<?php echo $payment['payment_id']; ?>">
           </div>
           <div class="modal-footer">

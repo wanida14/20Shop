@@ -223,7 +223,7 @@
                         echo "<td>" . $row["date"] . "</td>";
                         echo "<td>" . $row["price"] . "</td>";
                         echo "<td style=\"color:green\">" . $row["payment_status"] . "</td>";
-                        echo "<td>" . $row["delivery_status"] . "</td>";
+                        echo "<td style=\"color:orange\">" . $row["delivery_status"] . "</td>";
                         echo "<td>" . $row["ems_number"] . "</td>";
                         echo "<td class=\"button-style\" style=\"width: 184px;\">  
                         <a href=\"#\" class='btn btn-outline-warning' data-toggle=\"modal\" data-target=\"#product" . $row["payment_code"] ."\">

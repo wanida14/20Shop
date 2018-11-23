@@ -73,18 +73,26 @@
             </div>
         </div>
     </nav>
+
     <?php 
     if (isset($_GET['add_category'])) { ?>
         <div class="alert alert-success" role="alert">
-            เพิ่มข้อมูลหมวดหมู่สินค้าเรียบร้อยแล้วค่ะ
+            เพิ่มข้อมูล 'หมวดหมู่สินค้า' เรียบร้อยแล้วค่ะ
         </div>
     <?php } ?>
     <?php 
     if (isset($_GET['delete_category'])) { ?>
         <div class="alert alert-success" role="alert">
-            ลบข้อมูลหมวดหมู่สินค้าเรียบร้อยแล้วค่ะ
+            ลบข้อมูล 'หมวดหมู่สินค้า' เรียบร้อยแล้วค่ะ
         </div>
     <?php } ?>
+    <?php 
+    if (isset($_GET['update_category'])) { ?>
+        <div class="alert alert-success" role="alert">
+            แก้ไขข้อมูล 'หมวดหมู่สินค้า' เรียบร้อยแล้วค่ะ
+        </div>
+    <?php } ?>
+
     <!-- content -->
     <div class="container" style="background-color: white;margin-top: 30px;">
     <div class="text-center" style="padding-top: 20px;"><h3>หมวดหมู่สินค้า</h3></div>       
@@ -107,7 +115,7 @@
                                     echo "<td>" . $i . "</td>";
                                     echo "<td>" . $row["name"] . "</td>";
                                     echo "<td class=\"button-style\">
-                                            <a href=\"edit_product.php?id=\"".$row["id"]."\" class=\"btn btn-outline-info\">
+                                            <a href=\"#\" class=\"btn btn-outline-info\" data-toggle=\"modal\" data-target=\"#category" . $row["id"] ."\">
                                                 <i class=\"fas fa-address-book fa-lg icon\"></i>แก้ไข</a>
                                             <a href=\"../../src/admin/process_delete_category.php?id={$row["id"]}\" class=\"btn btn-outline-danger\">
                                                 <i class=\"fas fa-trash-alt fa-lg\"></i> ลบ</a>
@@ -146,6 +154,46 @@
     </div>
     </div>
     </div>
+
+    <!-- modal form edit category -->
+    <?php 
+        $sql = "SELECT * FROM category";
+        $result_category = mysqli_query($conn, $sql);
+    
+        while ($row = mysqli_fetch_array($result_category)) { 
+        echo "<div class=\"modal\" id=\"category". $row["id"] ."\" tabindex=\"-1\" role=\"dialog\">"; $category_id=$row["id"] 
+    ?>
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">รายละเอียดสินค้า</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">                   
+            <?php 
+                $sql = "SELECT * FROM category
+                        WHERE id = '$category_id'";
+                $result_category_edit = mysqli_query($conn, $sql);
+                $category_name = mysqli_fetch_array($result_category_edit);
+            ?>
+            <form method="post" action="../../src/admin/process_update_category.php">
+                <div class="form-group">
+                <label for="recipient-name" class="col-form-label">แก้ไขสถานะ</label>
+                    <input type="text" name="category_name" class="form-control" id="ems_number" value="<?php echo $category_name['name']; ?>">
+                    <input type="hidden" name="category_id" class="form-control" value="<?php echo $category_id; ?>">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button type="submit" class="btn btn-primary">บันทึก</button>
+                </div>
+            </form>
+        </div>           
+        </div>
+        </div>
+        </div>
+    <?php } ?>
 
 </body>
 
