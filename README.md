@@ -1,8 +1,8 @@
 # 20 Shop
 
 <p align="center">
-    <img src="screenshot/screenshot.gif"></a>
-</p>
+    <img src="screenshot.gif"></a>
+</p> 
 
 > Demo นี้เป็นระบบร้านค้าออนไลน์ชื่อว่า 20 shop 
 
