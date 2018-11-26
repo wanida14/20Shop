@@ -21,25 +21,6 @@
 
         require('../app/src/connect.php'); // เรียกใช้ไฟล์...
 
-        if (isset($_GET['text_register'])) {
-            echo '<div class="alert alert-success" role="alert">
-                        สมัครสมาชิกเรียบร้อยแล้วค่ะ
-                  </div>';
-        }
-
-        if (isset($_GET['category_id'])) {
-            $category_id = $_GET['category_id'];
-            
-            $sql = "SELECT * FROM product
-                    WHERE category_id = $category_id";
-            $result = mysqli_query($conn, $sql);
-        } else {
-            $category_id = 1;
-            $sql = "SELECT * FROM product
-                    WHERE category_id = $category_id";
-            $result = mysqli_query($conn, $sql);
-        }
-
         if (isset($_SESSION['id'])) {
             $id = $_SESSION['id'];
             $status_id = $_SESSION['status_id'];
@@ -54,6 +35,11 @@
             $result2 = mysqli_query($conn, $sql);
             $orders_count = mysqli_num_rows($result2);
         }
+
+        $text_search = $_POST['text'];
+        $sql = "SELECT * FROM product
+                WHERE name LIKE '$text_search%'";
+        $result = mysqli_query($conn, $sql);
     ?>
     <!-- menu bar -->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#fff;height: 56px;padding-top: 5px;">
@@ -195,78 +181,6 @@
     </div>
   </div>
 </div>
-    <!-- menu left -->
-    <div class="container" style="margin-top: 30px;">
-        <div class="row">
-            <div class="col-4" style="background-color:#fff;padding-bottom: 0px;padding-top: 0px;">
-                <div class="row">
-                    <div class="col-6 text-center a menu-l-top"  <?php if ($category_id == '1') { ?> style="background-color: #dfe6e9" <?php } ?>>
-                        <a class="nav-link" href="category_id.php?category_id=1">
-                            <img  class="icon-left" src="images/writing-tool.png" width="50" height="50" class="d-inline-block align-center" alt="">
-                            <p class="a" style="padding-top:5px;">อุปกรณ์การเรียน</p>
-                        </a>
-                    </div>
-                    <div class="col-6 text-center a menu-l-top" <?php if ($category_id == '2') { ?> style="background-color: #dfe6e9" <?php } ?>>
-                        <a class="nav-link" href="category_id.php?category_id=2">
-                            <img class="icon-left" src="images/dress.png" width="50" height="50" class="d-inline-block align-center" alt="">
-                            <p class="a" style="padding-top:5px;">เครื่องแต่งกาย</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 text-center a menu-l-midden" <?php if ($category_id == '3') { ?> style="background-color: #dfe6e9" <?php } ?>>
-                        <a class="nav-link" href="category_id.php?category_id=3">
-                            <img class="icon-left" src="images/synchronize.png" width="50" height="50" class="d-inline-block align-center" alt="">
-                            <p class="a" style="padding-top:5px;">ของใช้ทั่วไป</p>
-                        </a>
-                    </div>
-                    <div class="col-6 text-center a menu-l-bottom" <?php if ($category_id == '4') { ?> style="background-color: #dfe6e9" <?php } ?>>
-                        <a class="nav-link" href="category_id.php?category_id=4">
-                            <img class="icon-left" src="images/mobile.png" width="50" height="50" class="d-inline-block align-center" alt="">
-                            <p class="a" style="padding-top:5px;">อิเล็กทรอนิกส์</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 text-center a menu-l-bottom" <?php if ($category_id == '5') { ?> style="background-color: #dfe6e9" <?php } ?>>
-                        <a class="nav-link" href="category_id.php?category_id=5">
-                            <img class="icon-left" src="images/lipstick.png" width="50" height="50" class="d-inline-block align-center" alt="">
-                            <p class="a" style="padding-top:5px;">ความงาม</p>
-                        </a>
-                    </div>
-                    <div class="col-6 text-center a menu-l-bottom" <?php if ($category_id == '6') { ?> style="background-color: #dfe6e9" <?php } ?>>
-                        <a class="nav-link" href="category_id.php?category_id=6">
-                            <img class="icon-left" src="images/cutlery.png" width="50" height="50" class="d-inline-block align-center" alt="">
-                            <p class="a" style="padding-top:5px;">อาหาร</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-8" style="padding-right: 0px;padding-left: 20px;">
-                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img class="d-block w-100" src="images/cover-0.jpg" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="images/cover-1.jpg" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="images/problem-solving.jpg" alt="Third slide">
-                        </div>
-                    </div>
-                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- row search -->
     <div class="container">
         <div class="row">
