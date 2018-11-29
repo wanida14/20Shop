@@ -38,3 +38,4 @@
 #### 1.import ไฟล์ database/20shop.sql ลงฐานข้อมูล
 #### 2.ตั้งค่า usename, password, database ที่ไฟล์ app/src/connect.php
 #### 3.เข้าตัวจำลอง Web Server เช่น xampp แล้วเข้าผ่าน localhost/ชื่อโปรเจ็ค
+#### 4.สำหรับ Admin ให้เข้าผ่าน localhost/ชื่อโปรเจ็ค/public/admin
